@@ -10,50 +10,278 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            background-color: #f8f9fa;
+        :root {
+            --blush: #f4a7b9;
+            --rose: #d4547a;
+            --champagne: #f7e8d0;
+            --deep: #2b1a2e;
+            --gold: #c9a84c;
+            --soft-bg: #fdf6f9;
         }
+
+        body {
+            background-color: var(--soft-bg);
+            font-family: 'Lato', sans-serif;
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* NAV */
+        .navbar {
+            background: var(--deep) !important;
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: var(--blush) !important;
+        }
+        .navbar-nav .nav-link {
+            color: #ddd !important;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .navbar-nav .nav-link:hover { color: var(--blush) !important; }
+
+        /* HERO */
         .hero {
-            background: url('https://via.placeholder.com/1600x700') center/cover no-repeat;
+            background: linear-gradient(135deg, #2b1a2e 0%, #7b2d52 50%, #d4547a 100%);
             color: white;
-            background-color: red;
             padding: 120px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .overlay {
-            background: rgba(0,0,0,0.6);
-            padding: 60px 20px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+        .hero .lead { font-size: 1.25rem; font-weight: 300; opacity: 0.92; }
+
         .cta-btn {
-            font-size: 1.2rem;
-            padding: 12px 30px;
+            font-size: 1.1rem;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-family: 'Lato', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
         }
+        .btn-rose {
+            background: var(--rose);
+            border-color: var(--rose);
+            color: white;
+        }
+        .btn-rose:hover { background: #b8436a; border-color: #b8436a; color: white; }
+
+        /* SECTION HEADERS */
+        .section-tag {
+            display: inline-block;
+            background: var(--blush);
+            color: var(--deep);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* FEATURE CARDS */
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 20px rgba(212,84,122,0.08);
+            border-top: 4px solid var(--blush);
+            height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(212,84,122,0.15);
+        }
+        .feature-card h4 { color: var(--rose); }
+
+        /* ENTITY TAGS */
+        .entity-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+        .entity-tag {
+            background: white;
+            border: 1.5px solid var(--blush);
+            color: var(--deep);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+        .entity-tag:hover {
+            background: var(--rose);
+            border-color: var(--rose);
+            color: white;
+            cursor: default;
+        }
+
+        /* TOP 10 CITIES */
+        .cities-section { background: var(--deep); color: white; }
+        .city-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(244,167,185,0.25);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .city-card:hover {
+            background: rgba(244,167,185,0.12);
+            border-color: var(--blush);
+        }
+        .city-rank {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .city-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--blush);
+            margin-top: 6px;
+        }
+        .city-note { font-size: 0.82rem; color: #ccc; margin-top: 4px; }
+
+        /* PRICING */
+        .pricing-section { background: var(--champagne); }
+        .price-tier {
+            background: white;
+            border-radius: 14px;
+            padding: 32px 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            height: 100%;
+            border-bottom: 5px solid var(--blush);
+            transition: transform 0.2s;
+        }
+        .price-tier:hover { transform: translateY(-4px); }
+        .price-tier.featured { border-bottom-color: var(--rose); background: var(--deep); color: white; }
+        .price-tier.featured h4 { color: var(--blush); }
+        .price-tier.featured p, .price-tier.featured li { color: #ddd; }
+        .price-range {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--rose);
+            font-weight: 700;
+        }
+        .price-tier.featured .price-range { color: var(--gold); }
+        .price-tier ul { padding-left: 18px; font-size: 0.9rem; }
+        .price-tier ul li { margin-bottom: 6px; }
+
+        /* CHARLESTON SECTION */
+        .charleston-section { background: white; }
+        .compare-card {
+            border-radius: 14px;
+            padding: 28px;
+            height: 100%;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .compare-card:hover { transform: translateY(-3px); }
+        .compare-card.charleston {
+            background: linear-gradient(135deg, #fdf6f9, #f9e0ea);
+            border-color: var(--rose);
+        }
+        .compare-card.nashville { background: #f5f0ff; border-color: #9b6dff; }
+        .compare-card.vegas { background: #fff8e1; border-color: #f0b429; }
+        .compare-card.scottsdale { background: #fff3ec; border-color: #e07b4a; }
+        .compare-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .compare-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .compare-card.charleston h4 { color: var(--rose); }
+        .compare-card.nashville h4 { color: #6b3fcf; }
+        .compare-card.vegas h4 { color: #c98800; }
+        .compare-card.scottsdale h4 { color: #c05a2a; }
+        .compare-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            font-size: 0.88rem;
+        }
+        .compare-stat:last-child { border-bottom: none; }
+        .compare-stat span:first-child { color: #666; }
+        .compare-stat span:last-child { font-weight: 700; }
+
+        /* CTA STRIP */
+        .cta-strip {
+            background: linear-gradient(135deg, var(--rose), #7b2d52);
+            color: white;
+        }
+
+        /* FOOTER */
         footer {
-            background: #111;
+            background: var(--deep);
             color: #ccc;
             padding: 40px 0;
         }
-        footer a {
-            color: #aaa;
-            text-decoration: none;
+        footer a { color: #f4a7b9; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        footer h5 { color: var(--blush); }
+
+        /* DIVIDERS */
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--rose);
+            margin: 16px auto 28px;
+            border-radius: 2px;
         }
-        footer a:hover {
-            color: #fff;
+
+        @media (max-width: 767px) {
+            .hero h1 { font-size: 2.1rem; }
+            .city-rank { font-size: 1.7rem; }
         }
     </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Party Guide</a>
+        <a class="navbar-brand fw-bold" href="#">Amazing Bachelorette</a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="nav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="#">Bachelorette</a></li>
@@ -67,21 +295,23 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="overlay">
+    <div class="container position-relative">
         <h1 class="display-4 fw-bold">Plan an Unforgettable Celebration</h1>
         <p class="lead mt-3">
             Discover top-rated bachelorette and bachelor party ideas, private experiences, and curated entertainment across the country.
         </p>
-        <a href="#" class="btn btn-primary mt-4 cta-btn">Start Planning Now</a>
+        <a href="#" class="btn btn-rose mt-4 cta-btn">Start Planning Now</a>
     </div>
 </section>
 
 <!-- INTRO -->
 <section class="py-5">
     <div class="container text-center">
-        <h2 class="fw-bold mb-3">Your Go-To Party Planning Resource</h2>
+        <span class="section-tag">Welcome</span>
+        <h2 class="fw-bold mb-2">Your Go-To Party Planning Resource</h2>
+        <div class="section-divider"></div>
         <p class="lead">
-            Whether you're organizing a weekend getaway, a girls’ trip, or a private group celebration, this platform connects you with unique ideas and experiences tailored to your group’s vibe.
+            Whether you're organizing a weekend getaway, a girls' trip, or a private group celebration, this platform connects you with unique ideas and experiences tailored to your group's vibe.
         </p>
     </div>
 </section>
@@ -89,16 +319,104 @@
 <!-- MIDDLE CONTENT SECTION -->
 <section class="py-5 bg-light">
     <div class="container text-center">
-        <h2 class="fw-bold mb-3">Explore Unique Party Experiences</h2>
+        <span class="section-tag">About This Guide</span>
+        <h2 class="fw-bold mb-2">Explore Unique Party Experiences</h2>
+        <div class="section-divider"></div>
 
         <p class="lead">
             This platform exists to serve as a comprehensive reference point for groups planning standout bachelorette and bachelor parties, offering a curated look into experiences that go beyond the typical itinerary. Instead of spending hours searching across multiple sites, this hub brings together a wide range of entertainment, activities, and group-friendly options designed specifically for celebrations. Whether you're organizing a weekend trip, a one-night event, or a full itinerary for your group, the goal is to simplify discovery while showcasing ideas that are engaging, memorable, and tailored to different personalities and comfort levels.
         </p>
 
         <p class="lead mt-3">
-            From high-energy entertainment like Shows, Female Entertainers, Male Entertainers, and Diva Shows to interactive experiences such as Sip’n Paint Parties, along with more relaxed options like Dinner, Brunch, Breakfast, Spas, Wine Tours, and Yoga Classes, this site highlights a full spectrum of possibilities for every type of group. By bringing all things bachelorette and bachelor into one place, it becomes easier to compare ideas, mix and match experiences, and build a celebration that feels unique, personalized, and worth remembering. Whether your group leans toward upscale and refined or playful and bold, this resource is designed to help you plan with confidence and discover options you may not have considered otherwise.
+            From high-energy entertainment like Shows, Female Entertainers, Male Entertainers, and Diva Shows to interactive experiences such as Sip'n Paint Parties, along with more relaxed options like Dinner, Brunch, Breakfast, Spas, Wine Tours, and Yoga Classes, this site highlights a full spectrum of possibilities for every type of group. By bringing all things bachelorette and bachelor into one place, it becomes easier to compare ideas, mix and match experiences, and build a celebration that feels unique, personalized, and worth remembering. Whether your group leans toward upscale and refined or playful and bold, this resource is designed to help you plan with confidence and discover options you may not have considered otherwise.
+        </p>
+    </div>
+</section>
+
+<!-- ===== NEW: ENTITY CLOUD ===== -->
+<section class="py-5" style="background: var(--soft-bg);">
+    <div class="container text-center">
+        <span class="section-tag">What's Included</span>
+        <h2 class="fw-bold mb-2">Bachelorette & Bridal Shower Experiences</h2>
+        <div class="section-divider"></div>
+        <p class="lead mb-4">
+            From the bride tribe's first toast to the last dance of the night, every great bachelorette weekend is built from the right mix of experiences. Here's a look at everything you can explore and plan through this guide — whether you're throwing a classic bridal shower, a wild girls' trip, or something beautifully in between.
         </p>
 
+        <h5 class="fw-bold mt-4 mb-3" style="color: var(--rose);">Entertainment & Nightlife</h5>
+        <div class="entity-cloud">
+            <span class="entity-tag">Male Entertainers</span>
+            <span class="entity-tag">Female Entertainers</span>
+            <span class="entity-tag">Male Revue Shows</span>
+            <span class="entity-tag">Diva Shows</span>
+            <span class="entity-tag">Drag Brunch</span>
+            <span class="entity-tag">Live Music Bars</span>
+            <span class="entity-tag">Rooftop Bars</span>
+            <span class="entity-tag">Club Packages</span>
+            <span class="entity-tag">Private Nightlife</span>
+            <span class="entity-tag">Bachelorette Bar Crawls</span>
+            <span class="entity-tag">VIP Bottle Service</span>
+            <span class="entity-tag">Dueling Pianos</span>
+        </div>
+
+        <h5 class="fw-bold mt-5 mb-3" style="color: var(--rose);">Daytime Activities & Experiences</h5>
+        <div class="entity-cloud">
+            <span class="entity-tag">Sip & Paint Party</span>
+            <span class="entity-tag">Wine Tours</span>
+            <span class="entity-tag">Winery Visits</span>
+            <span class="entity-tag">Distillery Tours</span>
+            <span class="entity-tag">Brewery Crawls</span>
+            <span class="entity-tag">Cooking Classes</span>
+            <span class="entity-tag">Mixology Classes</span>
+            <span class="entity-tag">Pottery Classes</span>
+            <span class="entity-tag">Axe Throwing</span>
+            <span class="entity-tag">Golf & Mini Golf</span>
+            <span class="entity-tag">Kayaking & Paddleboarding</span>
+            <span class="entity-tag">Boat Parties</span>
+            <span class="entity-tag">Party Bus Tours</span>
+            <span class="entity-tag">Escape Rooms</span>
+        </div>
+
+        <h5 class="fw-bold mt-5 mb-3" style="color: var(--rose);">Wellness & Relaxation</h5>
+        <div class="entity-cloud">
+            <span class="entity-tag">Spa Days</span>
+            <span class="entity-tag">Couples Massages</span>
+            <span class="entity-tag">Yoga Classes</span>
+            <span class="entity-tag">Barre Classes</span>
+            <span class="entity-tag">Sound Bath</span>
+            <span class="entity-tag">Beach Day</span>
+            <span class="entity-tag">Pool Parties</span>
+            <span class="entity-tag">Float Therapy</span>
+            <span class="entity-tag">Group Mani-Pedi</span>
+        </div>
+
+        <h5 class="fw-bold mt-5 mb-3" style="color: var(--rose);">Dining & Bridal Shower</h5>
+        <div class="entity-cloud">
+            <span class="entity-tag">Bridal Shower</span>
+            <span class="entity-tag">Private Brunch</span>
+            <span class="entity-tag">Champagne Brunch</span>
+            <span class="entity-tag">Bachelorette Dinner</span>
+            <span class="entity-tag">Private Dining Room</span>
+            <span class="entity-tag">Rehearsal Dinner</span>
+            <span class="entity-tag">Wine & Cheese Tasting</span>
+            <span class="entity-tag">Catered Airbnb Party</span>
+            <span class="entity-tag">Rooftop Dinner</span>
+            <span class="entity-tag">Food Crawl</span>
+            <span class="entity-tag">Bridal Luncheon</span>
+        </div>
+
+        <h5 class="fw-bold mt-5 mb-3" style="color: var(--rose);">Rentals & Accommodations</h5>
+        <div class="entity-cloud">
+            <span class="entity-tag">Bachelorette Airbnb</span>
+            <span class="entity-tag">Party House Rental</span>
+            <span class="entity-tag">Vacation Rental</span>
+            <span class="entity-tag">Hotel Block</span>
+            <span class="entity-tag">Luxury Villa Rental</span>
+            <span class="entity-tag">Private Pool House</span>
+            <span class="entity-tag">Beach House Rental</span>
+            <span class="entity-tag">Limo Service</span>
+            <span class="entity-tag">Sprinter Van Rental</span>
+        </div>
     </div>
 </section>
 
@@ -106,46 +424,318 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="row g-4">
-
             <div class="col-md-4">
-                <div class="p-4 bg-white shadow-sm h-100">
+                <div class="feature-card">
                     <h4 class="fw-bold">Curated Experiences</h4>
                     <p>
-                        From daytime activities to high-energy nightlife options, explore ideas that fit every style of celebration.
+                        From daytime activities to high-energy nightlife options, explore ideas that fit every style of celebration — bridal showers, girls' trips, and everything in between.
                     </p>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="p-4 bg-white shadow-sm h-100">
+                <div class="feature-card">
                     <h4 class="fw-bold">City-by-City Guides</h4>
                     <p>
                         Find the best places, hidden gems, and trending party destinations in major cities across the U.S.
                     </p>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="p-4 bg-white shadow-sm h-100">
+                <div class="feature-card">
                     <h4 class="fw-bold">Private Group Options</h4>
                     <p>
                         Discover exclusive experiences designed specifically for private groups, rentals, and special events.
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
+<!-- ===== NEW: TOP 10 BACH CITIES ===== -->
+<section class="py-5 cities-section">
+    <div class="container text-center">
+        <span class="section-tag" style="background: var(--gold); color: var(--deep);">Ranked</span>
+        <h2 class="fw-bold mb-2 text-white">Top 10 Bachelorette Party Cities in the U.S.</h2>
+        <div class="section-divider" style="background: var(--gold);"></div>
+        <p class="lead mb-5" style="color: #ccc;">
+            Every bride squad has a different vibe, but these cities consistently deliver the combination of nightlife, entertainment, unique experiences, and group-friendly accommodations that make for unforgettable bachelorette weekends.
+        </p>
+
+        <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">01</div>
+                    <div class="city-name">Las Vegas</div>
+                    <div class="city-note">The original party capital. Pools, clubs, shows.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">02</div>
+                    <div class="city-name">Nashville</div>
+                    <div class="city-note">Honky-tonks, hot chicken, and nonstop energy.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">03</div>
+                    <div class="city-name">Scottsdale</div>
+                    <div class="city-note">Luxury pools, rooftop bars, and desert nightlife.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">04</div>
+                    <div class="city-name">Charleston</div>
+                    <div class="city-note">Southern charm meets bold entertainment. Rising fast.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">05</div>
+                    <div class="city-name">Miami</div>
+                    <div class="city-note">Beach clubs, nightlife, and year-round sunshine.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">06</div>
+                    <div class="city-name">New Orleans</div>
+                    <div class="city-note">Bourbon Street, jazz, and legendary group energy.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">07</div>
+                    <div class="city-name">Austin</div>
+                    <div class="city-note">Live music, rooftop bars, and a city-wide party vibe.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">08</div>
+                    <div class="city-name">Savannah</div>
+                    <div class="city-note">Open container laws, historic squares, Southern beauty.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">09</div>
+                    <div class="city-name">Chicago</div>
+                    <div class="city-note">World-class bars, architecture, and urban adventure.</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2-4">
+                <div class="city-card">
+                    <div class="city-rank">10</div>
+                    <div class="city-name">Orlando</div>
+                    <div class="city-note">Theme parks by day, nightlife and shows after dark.</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="mt-4" style="color: #aaa; font-size: 0.9rem;">
+            Other standout destinations worth considering: <strong style="color: var(--blush);">Asheville · Denver · Portland · San Diego · NYC · Key West · Tulum (Mexico) · Playa del Carmen</strong>
+        </p>
+    </div>
+</section>
+
+<!-- ===== NEW: PRICE RANGES ===== -->
+<section class="py-5 pricing-section">
+    <div class="container text-center">
+        <span class="section-tag">Budget Planning</span>
+        <h2 class="fw-bold mb-2">What Should a Bachelorette Party Cost?</h2>
+        <div class="section-divider"></div>
+        <p class="lead mb-5">
+            Costs vary widely depending on the city, the size of your group, and the experiences you choose. Here's a realistic breakdown across three planning tiers — so every member of the bride tribe knows what to expect before the trip begins.
+        </p>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="price-tier">
+                    <h4 class="fw-bold">Budget-Friendly</h4>
+                    <div class="price-range">$150–$350</div>
+                    <p class="text-muted small mb-3"><em>Per person / weekend</em></p>
+                    <ul class="text-start">
+                        <li>Shared Airbnb or vacation rental</li>
+                        <li>Pregame at the house, go out after</li>
+                        <li>Cover charges &amp; bar tabs</li>
+                        <li>1 group activity (paint night, bar crawl)</li>
+                        <li>Rideshares &amp; casual dining</li>
+                    </ul>
+                    <p class="mt-3 small text-muted">Best for: Local celebrations or smaller groups in mid-size cities</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="price-tier featured">
+                    <p class="section-tag mb-2" style="background: var(--gold); color: var(--deep);">Most Popular</p>
+                    <h4 class="fw-bold">Mid-Range</h4>
+                    <div class="price-range">$400–$700</div>
+                    <p class="small mb-3" style="color: #ccc;"><em>Per person / weekend</em></p>
+                    <ul class="text-start">
+                        <li>Private house rental or boutique hotel</li>
+                        <li>Male or female entertainer appearance</li>
+                        <li>Brunch + dinner reservation</li>
+                        <li>Sip &amp; paint or mixology class</li>
+                        <li>Party bus or Sprinter van rental</li>
+                        <li>Custom sashes, decor, swag bags</li>
+                    </ul>
+                    <p class="mt-3 small" style="color: #aaa;">Best for: Weekend getaways in Charleston, Nashville, Savannah, or Austin</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="price-tier">
+                    <h4 class="fw-bold">Luxury Weekend</h4>
+                    <div class="price-range">$800–$1,500+</div>
+                    <p class="text-muted small mb-3"><em>Per person / weekend</em></p>
+                    <ul class="text-start">
+                        <li>Luxury villa or high-end hotel block</li>
+                        <li>Private yacht or boat charter</li>
+                        <li>Spa day with group treatments</li>
+                        <li>Premium male revue or private show</li>
+                        <li>Private chef or upscale dining experience</li>
+                        <li>Limo service, VIP club access</li>
+                    </ul>
+                    <p class="mt-3 small text-muted">Best for: Vegas, Miami, Scottsdale, and destination weekends</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity price table -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10">
+                <div class="bg-white rounded-4 shadow-sm p-4 text-start">
+                    <h5 class="fw-bold text-center mb-4" style="color: var(--deep);">Typical Activity Price Ranges (Per Group)</h5>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <div class="compare-stat"><span>Male / Female Entertainer (2hr)</span><span style="color:var(--rose);">$300–$700</span></div>
+                            <div class="compare-stat"><span>Male Revue Show (tickets)</span><span style="color:var(--rose);">$40–$120 / person</span></div>
+                            <div class="compare-stat"><span>Sip & Paint Party</span><span style="color:var(--rose);">$35–$75 / person</span></div>
+                            <div class="compare-stat"><span>Mixology or Cooking Class</span><span style="color:var(--rose);">$65–$100 / person</span></div>
+                            <div class="compare-stat"><span>Drag Brunch (w/ drinks)</span><span style="color:var(--rose);">$50–$90 / person</span></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="compare-stat"><span>Party Bus Rental (4hr)</span><span style="color:var(--rose);">$400–$900</span></div>
+                            <div class="compare-stat"><span>Boat / Yacht Charter (half day)</span><span style="color:var(--rose);">$600–$2,000+</span></div>
+                            <div class="compare-stat"><span>Spa Day (per person)</span><span style="color:var(--rose);">$100–$300</span></div>
+                            <div class="compare-stat"><span>Private House Rental (weekend)</span><span style="color:var(--rose);">$500–$2,500+</span></div>
+                            <div class="compare-stat"><span>Bridal Shower Venue Rental</span><span style="color:var(--rose);">$200–$1,500+</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NEW: CHARLESTON SPOTLIGHT ===== -->
+<section class="py-5 charleston-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-tag">Destination Spotlight</span>
+            <h2 class="fw-bold mb-2">Charleston: The Rising Queen of Bachelorette Destinations</h2>
+            <div class="section-divider"></div>
+            <p class="lead mx-auto" style="max-width: 760px;">
+                For years, bachelorette groups defaulted to the same three or four cities. But a new contender has firmly planted itself on the short list — and for many bride squads, it's become the top choice. Here's how Charleston stacks up against the cities that defined the bachelorette weekend category.
+            </p>
+        </div>
+
+        <!-- Charleston intro -->
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-7">
+                <h3 class="fw-bold" style="color: var(--rose);">Why Charleston Is Having Its Moment</h3>
+                <p>
+                    Charleston, South Carolina has quietly transformed into one of the most sought-after bachelorette destinations in the country. What was once known primarily as a destination for history lovers and foodies has evolved into a full-on girls' trip hub — and it shows no signs of slowing down. Groups are drawn by the city's ability to deliver an upscale, Instagram-worthy atmosphere that's still approachable and genuinely fun.
+                </p>
+                <p>
+                    The city's compact, walkable downtown — anchored by King Street and the historic French Quarter — makes it easy to move between brunch spots, boutique shopping, rooftop bars, and private entertainment without the chaos and expense of navigating a massive resort city. The Holy City has become synonymous with bachelorette culture: pastel Rainbow Row backdrops, Spanish moss-draped streets, open-air carriages, and a thriving private entertainment scene that includes some of the most in-demand male entertainers in the Southeast.
+                </p>
+                <p>
+                    Add in the Lowcountry beach destinations — Folly Beach, Isle of Palms, Sullivan's Island — and groups suddenly have access to both an urban party experience and a beach day within 20 minutes of each other. That combination is nearly impossible to replicate in most competing cities.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="compare-card charleston p-4">
+                    <div class="compare-label" style="color: var(--rose);">✦ Charleston, SC</div>
+                    <h4 class="fw-bold">The Holy City</h4>
+                    <div class="compare-stat"><span>Vibe</span><span>Romantic, upscale, Southern Gothic</span></div>
+                    <div class="compare-stat"><span>Group Size Sweet Spot</span><span>8–16 women</span></div>
+                    <div class="compare-stat"><span>Avg. Weekend Cost / Person</span><span>$400–$800</span></div>
+                    <div class="compare-stat"><span>Beach Access</span><span>Yes — 3 beach options nearby</span></div>
+                    <div class="compare-stat"><span>Private Entertainment</span><span>Strong, growing scene</span></div>
+                    <div class="compare-stat"><span>Walkable Downtown</span><span>Yes — King St. corridor</span></div>
+                    <div class="compare-stat"><span>Unique Draw</span><span>History + nightlife + coastline</span></div>
+                    <div class="compare-stat"><span>Rising Popularity</span><span>📈 Top 5 nationally</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison grid -->
+        <h3 class="fw-bold text-center mb-4" style="color: var(--deep);">How Charleston Compares to the Big Three</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="compare-card nashville h-100">
+                    <div class="compare-label" style="color: #9b6dff;">vs.</div>
+                    <h4 class="fw-bold">Nashville, TN</h4>
+                    <p class="small mb-3" style="color: #555;">The current bachelorette capital. High volume, high energy — and high competition for everything.</p>
+                    <div class="compare-stat"><span>Vibe</span><span>Party-first, loud, social media</span></div>
+                    <div class="compare-stat"><span>Cost</span><span>$500–$1,000+ / person</span></div>
+                    <div class="compare-stat"><span>Saturation</span><span>Very high (100s of groups/wknd)</span></div>
+                    <div class="compare-stat"><span>Nightlife</span><span>Broadway honky-tonks</span></div>
+                    <div class="compare-stat"><span>Beach Access</span><span>None</span></div>
+                    <div class="compare-stat"><span>Intimate Vibe</span><span>Difficult in peak season</span></div>
+                    <p class="small mt-3" style="color: #555;"><strong>Charleston Advantage:</strong> More intimate, less crowded, coastal access, and typically more affordable for comparable experiences.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="compare-card vegas h-100">
+                    <div class="compare-label" style="color: #c98800;">vs.</div>
+                    <h4 class="fw-bold">Las Vegas, NV</h4>
+                    <p class="small mb-3" style="color: #555;">The original everything-goes destination. Unmatched for scale — but often overwhelming and expensive.</p>
+                    <div class="compare-stat"><span>Vibe</span><span>All-in, resort-focused, loud</span></div>
+                    <div class="compare-stat"><span>Cost</span><span>$700–$1,500+ / person</span></div>
+                    <div class="compare-stat"><span>Saturation</span><span>Massive bachelorette traffic</span></div>
+                    <div class="compare-stat"><span>Nightlife</span><span>World-class clubs &amp; shows</span></div>
+                    <div class="compare-stat"><span>Beach Access</span><span>None (pool scene instead)</span></div>
+                    <div class="compare-stat"><span>Authentic Feel</span><span>Commercial, resort-driven</span></div>
+                    <p class="small mt-3" style="color: #555;"><strong>Charleston Advantage:</strong> Authentic city character, real local culture, lower cost, and a genuine sense of place that Vegas simply can't offer.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="compare-card scottsdale h-100">
+                    <div class="compare-label" style="color: #c05a2a;">vs.</div>
+                    <h4 class="fw-bold">Scottsdale, AZ</h4>
+                    <p class="small mb-3" style="color: #555;">Luxury desert vibes, incredible resorts and pool parties — but heavily seasonal and pricey.</p>
+                    <div class="compare-stat"><span>Vibe</span><span>Luxury resort, pool-focused</span></div>
+                    <div class="compare-stat"><span>Cost</span><span>$600–$1,200 / person</span></div>
+                    <div class="compare-stat"><span>Seasonality</span><span>Limited (extreme summer heat)</span></div>
+                    <div class="compare-stat"><span>Nightlife</span><span>Old Town bar scene</span></div>
+                    <div class="compare-stat"><span>Beach Access</span><span>None</span></div>
+                    <div class="compare-stat"><span>Year-Round Appeal</span><span>Moderate</span></div>
+                    <p class="small mt-3" style="color: #555;"><strong>Charleston Advantage:</strong> Year-round mild climate, ocean access, richer cultural character, and a growing entertainment scene at lower price points.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <div class="bg-light rounded-4 p-4 d-inline-block" style="max-width: 680px;">
+                <p class="mb-0 lead" style="color: var(--deep);">
+                    <strong style="color: var(--rose);">The Bottom Line:</strong> Charleston offers the rare combination of Southern elegance, coastal access, authentic nightlife, walkable streets, and a private entertainment scene that's still personal enough to feel exclusive — at a price point that beats most competing destinations. It's not trying to be Nashville or Vegas. It's doing something better.
+                </p>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- CTA -->
-<section class="py-5 text-center">
+<section class="py-5 cta-strip text-center">
     <div class="container">
-        <h2 class="fw-bold mb-3">Ready to Plan Something Amazing?</h2>
-        <p class="lead">
+        <h2 class="fw-bold mb-3 text-white">Ready to Plan Something Amazing?</h2>
+        <p class="lead text-white opacity-90">
             Start exploring top destinations and ideas designed to make your celebration unforgettable.
         </p>
-        <a href="#" class="btn btn-dark cta-btn mt-3">Explore Party Ideas</a>
+        <a href="#" class="btn btn-light cta-btn mt-3" style="color: var(--rose); font-weight: 700;">Explore Party Ideas</a>
     </div>
 </section>
 
@@ -153,8 +743,7 @@
 <footer>
     <div class="container text-center">
 
-        <h5 class="fw-bold mb-3"> Bach Guides | What To Do</h5>
-
+        <h5 class="fw-bold mb-3">Bach Guides | What To Do</h5>
         <p>
             <a href="bach-party/charleston.html">Charleston</a> |
             <a href="bach-party/atlanta.html">Atlanta</a> |
@@ -167,10 +756,8 @@
             <a href="bach-party/nyc.html">NYC</a>
         </p>
     </div>
-    <div class="container text-center">
-
+    <div class="container text-center mt-3">
         <h5 class="fw-bold mb-3">Top Party Destinations Entertainment | Who To Find</h5>
-
         <p>
             <a href="entertainer/charleston-bach.html">Charleston</a> |
             <a href="entertainer/atlanta-bach.html">Atlanta</a> |
@@ -185,9 +772,7 @@
             <a href="entertainer/las-vegas-bach.html">Las Vegas</a> |
             <a href="entertainer/toronto-bach.html">Toronto</a>
         </p>
-
         <p class="mt-3 mb-0">© 2026 Party Guide. All Rights Reserved. <a href="https://flingbeforethering.com">Fling Before The Ring</a></p>
-
     </div>
 </footer>
 
